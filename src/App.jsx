@@ -1,11 +1,17 @@
-import { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Use BrowserRouter directly
 import "./App.css";
+import SignUp from "./pages/Signup";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
-    <>
-      <h1>Social media app</h1>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </Router>
   );
 }
 
