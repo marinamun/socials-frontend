@@ -28,6 +28,8 @@ const Login = () => {
         localStorage.setItem("token", result.token);
         //store the user's info so while they are logged we can display that info in profile
         localStorage.setItem("user", JSON.stringify(result.user));
+        //to get the id directly for the post creation
+        localStorage.setItem("userId", result.user._id);
       } else {
         const errorData = await response.json();
         setError(errorData.message);
