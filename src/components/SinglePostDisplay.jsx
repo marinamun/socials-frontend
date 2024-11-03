@@ -13,6 +13,7 @@ const SinglePostDisplay = ({ post }) => {
 
   //for replys to the comments
   const [replyText, setReplyText] = useState({});
+  const [expandedComments, setExpandedComments] = useState({});
 
   //this is a like and dislike function
   const handleLike = async () => {
@@ -125,6 +126,12 @@ const SinglePostDisplay = ({ post }) => {
       console.error("Error adding reply:", error);
     }
   };
+  const toggleReplies = (commentId) => {
+    setExpandedComments((prev) => ({
+      ...prev,
+      [commentId]: !prev[commentId],
+    }));
+  };
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -161,13 +168,25 @@ const SinglePostDisplay = ({ post }) => {
                 <strong>{comment.userId?.username}:</strong> {comment.content}
                 <ul>
                   {comment.replies &&
-                    comment.replies.map((reply) => (
-                      <li key={reply._id}>
-                        <strong>{reply.userId?.username}:</strong>{" "}
-                        {reply.content}
-                      </li>
-                    ))}
+                    (expandedComments[comment._id]
+                      ? comment.replies.map((reply) => (
+                          <li key={reply._id}>
+                            <strong>{reply.userId?.username}:</strong>{" "}
+                            {reply.content}
+                          </li>
+                        ))
+                      : comment.replies.slice(0, 1).map((reply) => (
+                          <li key={reply._id}>
+                            <strong>{reply.userId?.username}:</strong>{" "}
+                            {reply.content}
+                          </li>
+                        )))}
                 </ul>
+                {comment.replies.length > 1 && (
+                  <button onClick={() => toggleReplies(comment._id)}>
+                    {expandedComments[comment._id] ? "Show Less" : "Show More"}
+                  </button>
+                )}
                 <input
                   type="text"
                   value={replyText[comment._id] || ""}
