@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
 
+  // Check if user is logged in by checking for a token in localStorage
+  const isLoggedIn = localStorage.getItem("token");
+
   const handleSignOut = () => {
     // Remove the token from local storage (the one added in Login)
     localStorage.removeItem("token");
@@ -15,10 +18,17 @@ const Navbar = () => {
   return (
     <div>
       <Link to="/">Homepage</Link>
-      <button onClick={handleSignOut}>Sign out</button>
-      <Link to="/signup">Sign up</Link>
-      <Link to="/login">Log in</Link>
-      <Link to="/profile">Profile</Link>
+      {isLoggedIn ? (
+        <>
+          <button onClick={handleSignOut}>Sign out</button>
+          <Link to="/profile">Profile</Link>
+        </>
+      ) : (
+        <>
+          <Link to="/login">Log in</Link>
+          <Link to="/signup">Sign up</Link>
+        </>
+      )}
     </div>
   );
 };

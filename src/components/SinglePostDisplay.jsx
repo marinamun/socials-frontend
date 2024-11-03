@@ -8,8 +8,11 @@ const SinglePostDisplay = ({ post }) => {
   const [likes, setLikes] = useState(post.likes.length); // general like count
   const [isLiked, setIsLiked] = useState(post.likes.includes(userId)); // did the logged in user like it?
 
-  const [comments, setComments] = useState([]); 
-  const [commentText, setCommentText] = useState(""); 
+  const [comments, setComments] = useState([]);
+  const [commentText, setCommentText] = useState("");
+
+  //for replys to the comments
+  const [replyText, setReplyText] = useState({});
 
   //this is a like and dislike function
   const handleLike = async () => {
@@ -75,7 +78,7 @@ const SinglePostDisplay = ({ post }) => {
       });
 
       if (response.ok) {
-        setCommentText(""); 
+        setCommentText("");
         const updatedComments = await fetch(
           `http://localhost:5000/api/comments/post/${post._id}`
         );
@@ -89,6 +92,40 @@ const SinglePostDisplay = ({ post }) => {
     }
   };
 
+  const handleReplyToComment = async (commentId) => {
+    if (!replyText[commentId]?.trim()) return;
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/comments/${commentId}/reply`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            userId,
+            content: replyText[commentId],
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const updatedComments = await fetch(
+          `http://localhost:5000/api/comments/post/${post._id}`
+        );
+        const newComments = await updatedComments.json();
+        setComments(newComments);
+        setReplyText({ ...replyText, [commentId]: "" });
+      } else {
+        console.error("Failed to add reply");
+      }
+    } catch (error) {
+      console.error("Error adding reply:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchComments = async () => {
       try {
@@ -97,7 +134,7 @@ const SinglePostDisplay = ({ post }) => {
         );
         if (response.ok) {
           const data = await response.json();
-          setComments(data); 
+          setComments(data);
         } else {
           console.error("Failed to fetch comments");
         }
@@ -122,6 +159,29 @@ const SinglePostDisplay = ({ post }) => {
             {comments.map((comment) => (
               <li key={comment._id}>
                 <strong>{comment.userId?.username}:</strong> {comment.content}
+                <ul>
+                  {comment.replies &&
+                    comment.replies.map((reply) => (
+                      <li key={reply._id}>
+                        <strong>{reply.userId?.username}:</strong>{" "}
+                        {reply.content}
+                      </li>
+                    ))}
+                </ul>
+                <input
+                  type="text"
+                  value={replyText[comment._id] || ""}
+                  onChange={(e) =>
+                    setReplyText({
+                      ...replyText,
+                      [comment._id]: e.target.value,
+                    })
+                  }
+                  placeholder="Reply to this comment..."
+                />
+                <button onClick={() => handleReplyToComment(comment._id)}>
+                  Reply
+                </button>
               </li>
             ))}
           </ul>
