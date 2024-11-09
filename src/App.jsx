@@ -6,8 +6,14 @@ import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import Profile from "./pages/Profile";
+import Chat from "./components/Chat";
+import UserSearchBar from "./components/UserSearchBar";
+
 
 function App() {
+  //for the chat
+    const currentUser = JSON.parse(localStorage.getItem("user"));
+
   return (
     <>
       <Router>
@@ -18,6 +24,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/chat" element={<Chat currentUser={currentUser} />} />
+          <Route path="/search" element={<UserSearchBar currentUser={currentUser} />} />
         </Routes>
       </Router>
     </>

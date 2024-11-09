@@ -30,6 +30,7 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(result.user));
         //to get the id directly for the post creation
         localStorage.setItem("userId", result.user._id);
+
       } else {
         const errorData = await response.json();
         setError(errorData.message);

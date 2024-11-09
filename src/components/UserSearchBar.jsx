@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UserSearchBar = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const navigate = useNavigate();
+  
+  // Retrieve user info from localStorage
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      console.log("Frontend query:", query);
       if (query.length > 0) {
         fetchUsers();
       } else {
-        setResults([]); // Clear results if input is empty
+        setResults([]);
       }
     }, 300);
 
@@ -24,6 +28,7 @@ const UserSearchBar = () => {
         {
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`, // Pass the token
           },
         }
       );
@@ -38,6 +43,16 @@ const UserSearchBar = () => {
       console.error("Error:", error);
     }
   };
+const startChat = (recipientId) => {
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  if (currentUser && recipientId) {
+    navigate('/chat', { state: { currentUserId: currentUser._id, recipientId } });
+  } else {
+    console.error("Missing current user or recipient data");
+  }
+};
+
+
 
   return (
     <div>
@@ -50,24 +65,20 @@ const UserSearchBar = () => {
 
       {results.length > 0 && (
         <ul>
-          {results.slice(0, 5).map(
-            (
-              user // Limit results to top 5
-            ) => (
-              <li key={user._id}>
-                <div style={{ display: "flex", flexDirection: "row" }}>
-                  <img
-                    src={user.profilePicture || "/media/defaultPhoto.png"}
-                    alt="Profile"
-                    width="40"
-                    height="40"
-                  />
-
-                  <h4>{user.username}</h4>
-                </div>
-              </li>
-            )
-          )}
+          {results.slice(0, 5).map((user) => (
+            <li key={user._id}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                <img
+                  src={user.profilePicture || "/media/defaultPhoto.png"}
+                  alt="Profile"
+                  width="40"
+                  height="40"
+                />
+                <h4>{user.username}</h4>
+              <button onClick={() => startChat(user._id)}>Text</button>
+              </div>
+            </li>
+          ))}
         </ul>
       )}
     </div>
