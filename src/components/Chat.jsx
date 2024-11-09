@@ -54,6 +54,23 @@ const Chat = () => {
     fetchMessages();
   }, [currentUserId, recipientId]);
 
+  //to display new messages in the moment
+   useEffect(() => {
+    const handleReceiveMessage = (newMessage) => {
+      if (
+        (newMessage.senderId === currentUserId && newMessage.recipientId === recipientId) ||
+        (newMessage.senderId === recipientId && newMessage.recipientId === currentUserId)
+      ) {
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+      }
+    };
+
+    socket.on("receive_message", handleReceiveMessage);
+
+    return () => {
+      socket.off("receive_message", handleReceiveMessage);
+    };
+  }, [currentUserId, recipientId]);
 
   //to send messages
   const sendMessage = (content) => {
