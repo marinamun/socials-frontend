@@ -32,7 +32,7 @@ const SinglePostDisplay = ({ post }) => {
 
       if (response.ok) {
         setIsLiked(!isLiked);
-        setLikes(isLiked ? likes - 1 : likes + 1);
+      setLikes((prevLikes) => (isLiked ? prevLikes - 1 : prevLikes + 1));
       } else {
         console.error("Failed to like/unlike post");
       }
@@ -157,7 +157,7 @@ const SinglePostDisplay = ({ post }) => {
     <div className="post" style={{ border: "1px solid black" }}>
       <h3>{post.userId.username}</h3> <p>{post.content}</p>
       {post.image && <img src={post.image} alt="Post" />}
-      <div>Likes: {post.likes.length}</div>
+      <div>Likes: {likes}</div>
       <button onClick={handleLike}>{isLiked ? "Unlike" : "Like"}</button>
       <div>
         <h4>Comments</h4>
