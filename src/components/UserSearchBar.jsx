@@ -45,6 +45,11 @@ const UserSearchBar = () => {
   };
 const startChat = (recipientId) => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
+   if (!currentUser) {
+    navigate('/login');
+    return;
+  }
+  
   if (currentUser && recipientId) {
     navigate('/chat', { state: { currentUserId: currentUser._id, recipientId } });
   } else {

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "../style/SinglePostDisplay.css";
+
 
 const SinglePostDisplay = ({ post }) => {
   const userId = localStorage.getItem("userId");
@@ -154,12 +156,22 @@ const SinglePostDisplay = ({ post }) => {
 
   if (!isVisible) return null;
   return (
-    <div className="post" style={{ border: "1px solid black" }}>
-      <h3>{post.userId.username}</h3> <p>{post.content}</p>
+    <div className="post">
+      <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+      <img
+      src={post.userId.profilePicture || "/media/defaultPhoto.png"}
+      alt="User"
+      width="50"
+      height="50"
+      style={{ borderRadius: "50%" }}
+    />
+      <h3>{post.userId.username}</h3></div> <p>{post.content}</p>
       {post.image && <img src={post.image} alt="Post" />}
-      <div>Likes: {likes}</div>
+      <div className="post-like" style={{display:"flex", flexDirection:"row", justifyContent:"space-around", alignItems:"center"}}>
       <button onClick={handleLike}>{isLiked ? "Unlike" : "Like"}</button>
-      <div>
+      <div>Likes: {likes}</div>
+      </div>
+      <div className="post-comments">
         <h4>Comments</h4>
         {comments.length > 0 ? (
           <ul>
