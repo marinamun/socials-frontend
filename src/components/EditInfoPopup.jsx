@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../style/Profile.css";
 
 const EditInfoPopup = ({ user, onClose, onSave }) => {
   const [bio, setBio] = useState(user.bio);
@@ -27,16 +28,22 @@ const EditInfoPopup = ({ user, onClose, onSave }) => {
     <div className="popup-overlay">
       <div className="popup-content">
         <h3>Edit Profile</h3>
-        <label>
-          Bio:
-          <textarea value={bio} onChange={(e) => setBio(e.target.value)} />
-        </label>
-        <label>
-          Profile Picture:
-          <input type="file" accept="image/*" onChange={handleImageChange} />
-        </label>
-        <button onClick={onClose}>Cancel</button>
-        <button onClick={handleSave}>Save</button>
+        <div>
+          <label>
+            Bio:
+            <textarea value={bio} onChange={(e) => setBio(e.target.value)} />
+          </label>
+        </div>
+        <div>
+          <label>
+            Profile Picture:
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+          </label>
+        </div>
+        <div className="edit-profile-btns">
+          <button onClick={onClose}>❌</button>
+          <button onClick={handleSave}>Save</button>
+        </div>
       </div>
     </div>
   );

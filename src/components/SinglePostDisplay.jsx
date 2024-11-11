@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../style/SinglePostDisplay.css";
 
-
 const SinglePostDisplay = ({ post }) => {
   const userId = localStorage.getItem("userId");
   const username = JSON.parse(localStorage.getItem("user")).username; //to display the owner of comment
@@ -16,6 +15,8 @@ const SinglePostDisplay = ({ post }) => {
   //for replys to the comments
   const [replyText, setReplyText] = useState({});
   const [expandedComments, setExpandedComments] = useState({});
+
+  //for comment expansion
 
   //this is a like and dislike function
   const handleLike = async () => {
@@ -34,7 +35,7 @@ const SinglePostDisplay = ({ post }) => {
 
       if (response.ok) {
         setIsLiked(!isLiked);
-      setLikes((prevLikes) => (isLiked ? prevLikes - 1 : prevLikes + 1));
+        setLikes((prevLikes) => (isLiked ? prevLikes - 1 : prevLikes + 1));
       } else {
         console.error("Failed to like/unlike post");
       }
@@ -157,19 +158,39 @@ const SinglePostDisplay = ({ post }) => {
   if (!isVisible) return null;
   return (
     <div className="post">
-      <div style={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
-      <img
-      src={post.userId.profilePicture || "/media/defaultPhoto.png"}
-      alt="User"
-      width="50"
-      height="50"
-      style={{ borderRadius: "50%" }}
-    />
-      <h3>{post.userId.username}</h3></div> <p>{post.content}</p>
-      {post.image && <img src={post.image} alt="Post" />}
-      <div className="post-like" style={{display:"flex", flexDirection:"row", justifyContent:"space-around", alignItems:"center"}}>
-      <button onClick={handleLike}>{isLiked ? "Unlike" : "Like"}</button>
-      <div>Likes: {likes}</div>
+      <div
+        className="post-header"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <img
+          src={post.userId.profilePicture || "/media/defaultPhoto.png"}
+          alt="User"
+          width="50"
+          height="50"
+          style={{ borderRadius: "50%" }}
+        />
+        <h3>{post.userId.username}</h3>
+      </div>{" "}
+      <div className="post-content">
+        <p>{post.content}</p>
+
+        {post.image && <img src={post.image} alt="Post" className="post-uploaded-img" />}
+      </div>
+      <div
+        className="post-like"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          alignItems: "center",
+        }}
+      >
+        <button onClick={handleLike}>{isLiked ? "Unlike" : "Like"}</button>
+        <div>Likes: {likes}</div>
       </div>
       <div className="post-comments">
         <h4>Comments</h4>
@@ -177,7 +198,9 @@ const SinglePostDisplay = ({ post }) => {
           <ul>
             {comments.map((comment) => (
               <li key={comment._id}>
-                <strong>{comment.userId?.username}:</strong> {comment.content}
+                <div className="main-comment">
+                  <strong>{comment.userId?.username}:</strong> {comment.content}
+                </div>
                 <ul>
                   {comment.replies &&
                     (expandedComments[comment._id]
@@ -194,25 +217,38 @@ const SinglePostDisplay = ({ post }) => {
                           </li>
                         )))}
                 </ul>
-                {comment.replies.length > 1 && (
-                  <button onClick={() => toggleReplies(comment._id)}>
+                {comment.replies.length >= 0 && (
+                  <div
+                    className={`reply-toggle ${
+                      expandedComments[comment._id] ? "expanded" : ""
+                    }`}
+                    onClick={() => toggleReplies(comment._id)}
+                  >
+                    <span className="triangle">
+                      {expandedComments[comment._id] ? "▼" : "▶"}
+                    </span>
                     {expandedComments[comment._id] ? "Show Less" : "Show More"}
-                  </button>
+                    <br />
+                  </div>
                 )}
-                <input
-                  type="text"
-                  value={replyText[comment._id] || ""}
-                  onChange={(e) =>
-                    setReplyText({
-                      ...replyText,
-                      [comment._id]: e.target.value,
-                    })
-                  }
-                  placeholder="Reply to this comment..."
-                />
-                <button onClick={() => handleReplyToComment(comment._id)}>
-                  Reply
-                </button>
+                {expandedComments[comment._id] && (
+                  <div className="comment-input">
+                    <input
+                      type="text"
+                      value={replyText[comment._id] || ""}
+                      onChange={(e) =>
+                        setReplyText({
+                          ...replyText,
+                          [comment._id]: e.target.value,
+                        })
+                      }
+                      placeholder="Reply to this comment..."
+                    />
+                    <button onClick={() => handleReplyToComment(comment._id)}>
+                      Reply
+                    </button>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
@@ -220,13 +256,15 @@ const SinglePostDisplay = ({ post }) => {
           <p>No comments yet.</p>
         )}
       </div>
-      <input
-        type="text"
-        value={commentText}
-        onChange={(e) => setCommentText(e.target.value)}
-        placeholder="Add a comment..."
-      />
-      <button onClick={handleAddComment}>Comment</button>
+      <div className="comment-input">
+        <input
+          type="text"
+          value={commentText}
+          onChange={(e) => setCommentText(e.target.value)}
+          placeholder="Add a comment..."
+        />
+        <button onClick={handleAddComment}>Comment</button>
+      </div>
       {userId === post.userId._id && (
         <button onClick={handleDelete} style={{ color: "red" }}>
           Delete

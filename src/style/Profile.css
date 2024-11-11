@@ -1,0 +1,87 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.profile-container img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #4caf50;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* EDIT INFO POPUP */
+
+.popup-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-content div {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.popup-content label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-content textarea,
+.popup-content input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fdffdb;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.popup-content textarea {
+  resize: none;
+  height: 100px;
+}
+
+.popup-content input[type="file"]::file-selector-button {
+  background-color: white;
+  color: black;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-profile-btns {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.edit-profile-btns button {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-profile-btns button:last-child {
+  margin-right: 0;
+}

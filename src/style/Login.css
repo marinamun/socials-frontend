@@ -1,0 +1,15 @@
+.login-form {
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+.login-form input {
+  padding: 15px;
+  border: none;
+  background-color: #fdffdb;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+input::placeholder {
+  color: #213547;
+}

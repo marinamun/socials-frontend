@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Notification from "./Notification";
+import "../style/Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -9,8 +9,7 @@ const Navbar = () => {
   const isLoggedIn = localStorage.getItem("token");
 
   //for chat
-    const currentUser = JSON.parse(localStorage.getItem("user"));
-
+  const currentUser = JSON.parse(localStorage.getItem("user"));
 
   const handleSignOut = () => {
     // Remove the token from local storage (the one added in Login)
@@ -21,14 +20,13 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="navbar">
       <Link to="/">Homepage</Link>
       {isLoggedIn ? (
         <>
           <button onClick={handleSignOut}>Sign out</button>
           <Link to="/profile">Profile</Link>
-          <Notification currentUserId={currentUser._id} />
-
+         
         </>
       ) : (
         <>

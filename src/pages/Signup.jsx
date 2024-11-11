@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import "../style/Signup.css";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [bio, setBio] = useState("");
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const SignUp = () => {
       email,
       password,
       bio,
-      profilePicture: "../media/defaultPhoto.png", 
+      profilePicture: "../media/defaultPhoto.png",
     };
 
     const response = await fetch("http://localhost:5000/api/users", {
@@ -31,7 +31,7 @@ const SignUp = () => {
     if (response.ok) {
       const savedUser = await response.json();
       console.log("User registered:", savedUser);
-      navigate("/"); 
+      navigate("/");
     } else {
       const errorData = await response.json();
       console.error("Error registering user:", errorData);
@@ -39,11 +39,11 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Sign Up</h2>
+    <form className="signup-form" onSubmit={handleSubmit}>
+      <h2>Nice to meet you :)</h2>
       <div>
-        <label>Username</label>
         <input
+          placeholder="Username"
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -51,8 +51,8 @@ const SignUp = () => {
         />
       </div>
       <div>
-        <label>Email</label>
         <input
+          placeholder="Email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -60,8 +60,8 @@ const SignUp = () => {
         />
       </div>
       <div>
-        <label>Password</label>
         <input
+          placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -69,8 +69,8 @@ const SignUp = () => {
         />
       </div>
       <div>
-        <label>Bio (optional)</label>
         <textarea
+          placeholder="Bio"
           value={bio}
           onChange={(e) => setBio(e.target.value)}
           maxLength={160}

@@ -1,7 +1,131 @@
-.post{
-    background-color: #f8ffcc;
-    border: 1px solid black;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    padding: 20px;
+.post {
+  background-color: #fdffdb;
+  border: 1px solid black;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  padding: 20px;
+}
+.post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.post-header img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.post-header h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.post-content {
+  margin-top: 10px;
+}
+.post-uploaded-img {
+  width: 400px;
+}
+
+.post-like {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+}
+.post-comments ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.post-comments ul li {
+  margin-bottom: 10px;
+}
+.main-comment {
+  background-color: white;
+}
+
+.comment-section {
+  margin-top: 15px;
+}
+
+.comment-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: #555;
+  user-select: none;
+}
+
+.comment-toggle .triangle {
+  margin-right: 5px;
+  transition: transform 0.3s ease;
+}
+
+.comment-toggle.expanded .triangle {
+  transform: rotate(90deg);
+}
+
+.comment-list {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.comment-list.expanded {
+  max-height: 1000px;
+}
+
+.comment-input {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.comment-input input {
+  flex: 1;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.comment-input button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button {
+  color: red;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.reply-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  color: #555;
+  user-select: none;
+  margin-top: 5px;
+}
+
+.reply-toggle .triangle {
+  margin-right: 5px;
+  transition: transform 0.3s ease;
+}
+
+.reply-toggle.expanded .triangle {
+  transform: rotate(90deg);
 }

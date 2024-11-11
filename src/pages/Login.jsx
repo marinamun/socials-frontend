@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../style/Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +31,6 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(result.user));
         //to get the id directly for the post creation
         localStorage.setItem("userId", result.user._id);
-
       } else {
         const errorData = await response.json();
         setError(errorData.message);
@@ -41,21 +41,22 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
+    <form className="login-form" onSubmit={handleLogin}>
+      <h2>Welcome back :)</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div>
-        <label>Email</label>
         <input
+          placeholder="Enter your email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          
         />
       </div>
       <div>
-        <label>Password</label>
         <input
+          placeholder="Enter your password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

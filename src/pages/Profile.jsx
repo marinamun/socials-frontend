@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EditInfoPopup from "../components/EditInfoPopup";
+import "../style/Profile.css";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -39,10 +40,10 @@ const Profile = () => {
   }
 
   return (
-    <>
-      <h2>Hello {user.username}</h2>
-      <p>Your bio: {user.bio}</p>
+    <div className="profile-container">
+      <h2>Hello {user.username}👋🏻</h2>
       <img src={user.profilePicture} alt="Profile" />
+      <p> {user.bio}</p>
       <button onClick={handleOpenEdit}>Edit Info</button>
 
       {isEditing && (
@@ -52,7 +53,7 @@ const Profile = () => {
           onSave={handleSaveEdit}
         />
       )}
-    </>
+    </div>
   );
 };
 
