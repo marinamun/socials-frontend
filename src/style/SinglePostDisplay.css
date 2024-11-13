@@ -1,122 +1,127 @@
+/* Container for the entire post */
 .post {
-  background-color: #fdffdb;
-  border: 1px solid black;
-  border-radius: 15px;
-  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin-bottom: 20px;
   padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
 }
+
+.post:hover {
+  transform: translateY(-5px);
+}
+
+/* Header section with user profile picture and username */
 .post-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  gap: 15px;
+  margin-bottom: 15px;
 }
 
 .post-header img {
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  object-fit: cover;
 }
 
 .post-header h3 {
   margin: 0;
-  font-size: 1.2em;
+  font-size: 1.1em;
+  color: #213547;
+}
+.profile-picture {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
 
+/* Content section for text and images */
 .post-content {
   margin-top: 10px;
-}
-.post-uploaded-img {
-  width: 400px;
+  margin-bottom: 15px;
 }
 
+.post-content p {
+  margin-bottom: 10px;
+  color: #333;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.post-uploaded-img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  margin-top: 10px;
+  object-fit: cover;
+}
+
+/* Like button and like count */
 .post-like {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   margin-top: 10px;
 }
+
+.post-like button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.post-like button:hover {
+  background-color: #0056b3;
+}
+
+.post-like div {
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Comment section styling */
+.post-comments {
+  margin-top: 20px;
+}
+
+.post-comments h4 {
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: #007bff;
+}
+
 .post-comments ul {
-  list-style-type: none;
+  list-style: none;
   padding-left: 0;
 }
 
 .post-comments ul li {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
 }
+
 .main-comment {
-  background-color: white;
-}
-
-.comment-section {
-  margin-top: 15px;
-}
-
-.comment-toggle {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
   font-size: 0.9em;
-  color: #555;
-  user-select: none;
+  color: #333;
 }
 
-.comment-toggle .triangle {
-  margin-right: 5px;
-  transition: transform 0.3s ease;
-}
-
-.comment-toggle.expanded .triangle {
-  transform: rotate(90deg);
-}
-
-.comment-list {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.comment-list.expanded {
-  max-height: 1000px;
-}
-
-.comment-input {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.comment-input input {
-  flex: 1;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.comment-input button {
-  padding: 5px 10px;
-  border: none;
-  background-color: #4caf50;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.delete-button {
-  color: red;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-weight: bold;
-}
-
+/* Reply and expand comments section */
 .reply-toggle {
   cursor: pointer;
   display: flex;
   align-items: center;
   font-size: 0.9em;
-  color: #555;
+  color: #007bff;
   user-select: none;
   margin-top: 5px;
 }
@@ -128,4 +133,76 @@
 
 .reply-toggle.expanded .triangle {
   transform: rotate(90deg);
+}
+
+/* Comment input field styling */
+.comment-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.comment-input input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+}
+
+.comment-input button {
+  padding: 8px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.comment-input button:hover {
+  background-color: #218838;
+}
+
+/* Delete button styling */
+.delete-button {
+  color: #dc3545;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.delete-button:hover {
+  color: #b02a37;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .post {
+    padding: 15px;
+  }
+
+  .post-header img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .post-content p {
+    font-size: 0.9em;
+  }
+
+  .post-uploaded-img {
+    max-width: 100%;
+  }
+
+  .comment-input input {
+    padding: 6px;
+  }
+
+  .comment-input button {
+    padding: 6px 10px;
+  }
 }

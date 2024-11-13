@@ -73,18 +73,14 @@ const UserSearchBar = () => {
         <ul>
           {results.slice(0, 5).map((user) => (
             <li key={user._id}>
-              <div
-                style={{ display: "flex", alignItems: "center", gap: "10px" }}
-              >
-                <img
-                  src={user.profilePicture || "/media/defaultPhoto.png"}
-                  alt="Profile"
-                  width="40"
-                  height="40"
-                />
-                <h4>{user.username}</h4>
-                <button onClick={() => startChat(user._id)}>Text</button>
-              </div>
+              <img
+                src={user.profilePicture || "/media/defaultPhoto.png"}
+                alt="Profile"
+                width="40"
+                height="40"
+              />
+              <h4>{user.username}</h4>
+              <button onClick={() => startChat(user._id)}>Text</button>
             </li>
           ))}
         </ul>

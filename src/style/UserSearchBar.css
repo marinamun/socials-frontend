@@ -29,11 +29,11 @@
 }
 
 .user-search-container li {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between; /* Spread elements across the li */
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .user-search-container li:last-child {
@@ -42,25 +42,30 @@
 
 .user-search-container img {
   border-radius: 50%;
+  width: 40px;
+  height: 40px;
   object-fit: cover;
 }
 
 .user-search-container h4 {
-  margin: 0;
+  flex-grow: 1; /* Allow the username to take remaining space */
+  margin: 0 15px; /* Add spacing between image and button */
   font-size: 16px;
   color: #213547;
+  text-align: left;
 }
 
 .user-search-container button {
   background-color: #fdffdb;
-  color: white;
+  color: black;
   border: none;
   border-radius: 8px;
   padding: 8px 12px;
   cursor: pointer;
   font-size: 14px;
+  transition: background-color 0.3s;
 }
 
 .user-search-container button:hover {
-  background-color: #fdffdb;
+  background-color: #f0f0b0; /* Slightly darker shade for hover effect */
 }

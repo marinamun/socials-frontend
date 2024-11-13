@@ -14,9 +14,32 @@ const Profile = () => {
     setIsEditing(false);
   };
 
-  const handleSaveEdit = (updatedUser) => {
-    setUser(updatedUser);
-    localStorage.setItem("user", JSON.stringify(updatedUser));
+  const handleSaveEdit = async (updatedUser) => {
+    const userId = localStorage.getItem("userId");
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/users/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(updatedUser),
+        }
+      );
+
+      if (response.ok) {
+        const savedUser = await response.json();
+        setUser(savedUser);
+        localStorage.setItem("user", JSON.stringify(savedUser)); // Update local storage
+      } else {
+        console.error("Failed to update profile in the database");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
     setIsEditing(false);
   };
 

@@ -3,7 +3,7 @@ import "../style/SinglePostDisplay.css";
 
 const SinglePostDisplay = ({ post }) => {
   const userId = localStorage.getItem("userId");
-  const username = JSON.parse(localStorage.getItem("user")).username; //to display the owner of comment
+  const user = JSON.parse(localStorage.getItem("user")).username; //to display the owner of comment
   const [isVisible, setIsVisible] = useState(true); //for when deleting the post
 
   const [likes, setLikes] = useState(post.likes.length); // general like count
@@ -156,29 +156,38 @@ const SinglePostDisplay = ({ post }) => {
   }, [post._id]);
 
   if (!isVisible) return null;
+
+  console.log("Post data:", post);
+  console.log("post.userId:", post.userId);
+  console.log("Profile Picture URL:", post.userId?.profilePicture);
+  console.log("Username:", post.userId?.username);
   return (
     <div className="post">
-      <div
-        className="post-header"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-        }}
-      >
-        <img
-          src={post.userId.profilePicture || "/media/defaultPhoto.png"}
-          alt="User"
-          width="50"
-          height="50"
-          style={{ borderRadius: "50%" }}
-        />
-        <h3>{post.userId.username}</h3>
+      <div className="post-header">
+        {post.userId ? (
+          <>
+            {console.log("Rendering user data:", post.userId)}
+
+            <img
+              src={post.userId.profilePicture || "/media/defaultPhoto.png"}
+              alt="User"
+              width="50"
+              height="50"
+              className="profile-picture"
+              style={{ borderRadius: "50%" }}
+            />
+            <h3>{post.userId.username}</h3>
+          </>
+        ) : (
+          <h3>Loading...</h3>
+        )}
       </div>{" "}
       <div className="post-content">
         <p>{post.content}</p>
 
-        {post.image && <img src={post.image} alt="Post" className="post-uploaded-img" />}
+        {post.image && (
+          <img src={post.image} alt="Post" className="post-uploaded-img" />
+        )}
       </div>
       <div
         className="post-like"
