@@ -31,7 +31,7 @@ const SignUp = () => {
     if (response.ok) {
       const savedUser = await response.json();
       console.log("User registered:", savedUser);
-      navigate("/");
+      navigate("/login");
     } else {
       const errorData = await response.json();
       console.error("Error registering user:", errorData);

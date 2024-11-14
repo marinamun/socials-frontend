@@ -14,13 +14,18 @@ const EditInfoPopup = ({ user, onClose, onSave }) => {
 
     if (newProfilePicture) {
       const reader = new FileReader();
+      reader.readAsDataURL(newProfilePicture);
+
       reader.onloadend = async () => {
         updatedUser.profilePicture = reader.result;
+
+        // Wait for onSave to finish
         await onSave(updatedUser);
+        onClose();
       };
-      reader.readAsDataURL(newProfilePicture);
     } else {
       await onSave(updatedUser);
+      onClose();
     }
   };
 

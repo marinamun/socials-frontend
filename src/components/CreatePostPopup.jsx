@@ -1,10 +1,12 @@
-// CreatePostPopup.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../style/CreatePostPopup.css";
 
 const CreatePostPopup = ({ onClose, addNewPost }) => {
   const [content, setContent] = useState("");
   const [uploadedImage, setUploadedImage] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -25,7 +27,7 @@ const CreatePostPopup = ({ onClose, addNewPost }) => {
     const postData = {
       userId,
       content,
-      uploadedImage, // Send the base64 string of the image - cloudinary requires it
+      uploadedImage,
     };
 
     try {
@@ -38,10 +40,21 @@ const CreatePostPopup = ({ onClose, addNewPost }) => {
       });
 
       if (response.ok) {
-        const newPost = await response.json();
-        console.log("New post created:", newPost);
-        addNewPost(newPost);
-        onClose(); // Close the popup after posting
+        const createdPost = await response.json();
+
+        // Immediately close the popup
+        onClose();
+
+        // Fetch the populated post data after closing the popup
+        const populatedResponse = await fetch(
+          `http://localhost:5000/api/posts/${createdPost._id}`
+        );
+        if (populatedResponse.ok) {
+          const populatedPost = await populatedResponse.json();
+          addNewPost(populatedPost);
+        } else {
+          console.error("Failed to fetch populated post data");
+        }
       } else {
         console.error("Failed to create post");
       }
