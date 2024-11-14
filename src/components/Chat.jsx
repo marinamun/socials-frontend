@@ -146,7 +146,7 @@ const Chat = () => {
               msg.senderId === currentUserId ? "sent" : "received"
             }`}
           >
-            <b>{msg.senderId === currentUserId ? "Me" : "Them"}:</b>{" "}
+            {/* <b>{msg.senderId === currentUserId ? "Me" : "Them"}:</b>{" "} */}
             {msg.content}
           </div>
         ))}

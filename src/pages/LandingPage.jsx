@@ -44,10 +44,10 @@ const LandingPage = () => {
     }
   };
   return (
-    <div style={{ marginTop: "80px" }}>
-      <h1 style={{ color: "white" }}>Zen Social Media🐝</h1>
+    <div style={{ marginTop: "80px", color: "white" }}>
+      <h1>Bee Social 🐝</h1>
       <UserSearchBar />
-      <button onClick={handleCreatePostClick}>Create</button>
+      <button onClick={handleCreatePostClick}>Create a post</button>
       {showPopup && (
         <CreatePostPopup
           onClose={() => setShowPopup(false)}

@@ -1,5 +1,7 @@
 .login-form {
   padding: 30px;
+  background-color: white;
+
   border-radius: 20px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
@@ -9,7 +11,10 @@
   background-color: #fdffdb;
   border-radius: 20px;
   margin-bottom: 10px;
+  background-color: #c9983a;
+  outline: none;
+  font-family: "Faculty Glyphic", sans-serif;
 }
 input::placeholder {
-  color: #213547;
+  color: white;
 }

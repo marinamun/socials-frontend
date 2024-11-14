@@ -1,27 +1,31 @@
 .signup-form {
   padding: 30px;
+  background-color: white;
   border-radius: 20px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  max-width: 400px; 
-  margin: 0 auto; 
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .signup-form input,
 .signup-form textarea {
   padding: 15px;
   border: none;
-  background-color: #fdffdb;
+  background-color: #c9983a;
+  outline: none;
+  font-family: "Faculty Glyphic", sans-serif;
+
   border-radius: 20px;
   margin-bottom: 10px;
-  width: 100%; 
-  box-sizing: border-box; 
+  width: 100%;
+  box-sizing: border-box;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #213547;
+  color: white;
 }
 
 .signup-form textarea {
-  resize: none; 
+  resize: none;
 }

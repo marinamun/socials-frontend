@@ -18,6 +18,7 @@
   box-sizing: border-box;
   outline: none;
   color: #c9983a; /* Input text color */
+  font-family: "Faculty Glyphic", sans-serif;
 
   /* Placeholder color */
   &::placeholder {
