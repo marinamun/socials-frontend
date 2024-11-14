@@ -1,3 +1,4 @@
+/* Navbar Container */
 .navbar {
   position: fixed;
   top: 0;
@@ -6,46 +7,61 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
-  padding: 15px 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fdf8f4; /* Soft background color */
+  padding: 10px 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow for elegance */
   z-index: 1000;
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
+/* Navbar Links */
 .navbar a {
   text-decoration: none;
-  color: black;
-  font-size: 18px;
-  margin-right: 20px;
-  transition: color 0.3s ease;
-  white-space: nowrap; 
+  color: #c9983a; /* Elegant gold color */
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 25px;
+  transition: color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
 }
 
+/* Hover Effect for Links */
+.navbar a:hover {
+  color: #e6b537;
+  transform: translateY(-2px); /* Subtle lift effect */
+}
 
-
-/* Signout button  */
+/* Signout Button */
 .navbar button {
-  color: black;
+  background-color: #c9983a;
+  color: white;
   border: none;
-  border-radius: 8px;
-  padding: 10px 15px;
+  border-radius: 20px;
+  padding: 8px 18px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   margin-left: 20px;
 }
 
+.navbar button:hover {
+  background-color: #e6b537;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Elegant shadow on hover */
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px;
+    padding: 15px 20px;
   }
 
   .navbar a,
   .navbar button {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     margin-right: 0;
   }
 }

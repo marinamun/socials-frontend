@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 90vh;
   width: 100%;
-  max-width: 600px;
-  margin: 20px auto;
+  width: 400px;
+  margin: 30px auto;
   border: 1px solid #ddd;
   border-radius: 10px;
   background-color: #f5f5f5;
@@ -49,6 +49,8 @@
   margin-bottom: 10px;
   font-size: 14px;
   word-wrap: break-word;
+  white-space: pre-wrap; /* Ensures long words wrap properly */
+  overflow-wrap: break-word; /* Forces long words to break */
 }
 
 .chat-bubble.sent {

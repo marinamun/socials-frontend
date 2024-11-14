@@ -64,7 +64,7 @@ const UserSearchBar = () => {
     <div className="user-search-container">
       <input
         type="text"
-        placeholder="Search users by username"
+        placeholder="Search users and text them..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

@@ -44,8 +44,8 @@ const LandingPage = () => {
     }
   };
   return (
-    <>
-      <h1>Landing page</h1>
+    <div style={{ marginTop: "80px" }}>
+      <h1 style={{ color: "white" }}>Zen Social Media🐝</h1>
       <UserSearchBar />
       <button onClick={handleCreatePostClick}>Create</button>
       {showPopup && (
@@ -55,7 +55,7 @@ const LandingPage = () => {
         />
       )}
       {localStorage.getItem("token") && <AllPostsDisplay posts={posts} />}
-    </>
+    </div>
   );
 };
 export default LandingPage;

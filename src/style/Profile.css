@@ -3,6 +3,10 @@
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  background-color: #f9f9f9;
+  width: 500px;
+  padding: 20px;
+  border-radius: 15px;
 }
 
 .profile-container img {
@@ -10,7 +14,7 @@
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid #4caf50;
+  border: 4px solid #c9983a;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -21,7 +25,7 @@
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-  width: 400px;
+  width: 600px;
   max-width: 90%;
   display: flex;
   flex-direction: column;
@@ -43,12 +47,14 @@
 .popup-content input[type="file"] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #c9983a;
   border-radius: 8px;
-  background-color: #fdffdb;
+  background-color: white;
   font-size: 16px;
   box-sizing: border-box;
   margin-top: 5px;
+  outline: none;
+  font-family: "Faculty Glyphic", sans-serif;
 }
 
 .popup-content textarea {
@@ -57,13 +63,14 @@
 }
 
 .popup-content input[type="file"]::file-selector-button {
-  background-color: white;
-  color: black;
+  background-color: #c9983a;
+  color: white;
   padding: 8px;
-  border: 1px solid black;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: "Faculty Glyphic", sans-serif;
 }
 
 .edit-profile-btns {

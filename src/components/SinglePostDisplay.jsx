@@ -202,7 +202,6 @@ const SinglePostDisplay = ({ post }) => {
         <div>Likes: {likes}</div>
       </div>
       <div className="post-comments">
-        <h4>Comments</h4>
         {comments.length > 0 ? (
           <ul>
             {comments.map((comment) => (

@@ -12,10 +12,18 @@
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 20px;
-  background-color: #fdffdb;
+  background-color: white;
   font-size: 16px;
   margin-bottom: 15px;
   box-sizing: border-box;
+  outline: none;
+  color: #c9983a; /* Input text color */
+
+  /* Placeholder color */
+  &::placeholder {
+    color: #c9983a;
+    opacity: 1;
+  }
 }
 
 .user-search-container ul {
@@ -56,16 +64,17 @@
 }
 
 .user-search-container button {
-  background-color: #fdffdb;
-  color: black;
+  background-color: #c9983a;
+  color: white;
   border: none;
   border-radius: 8px;
   padding: 8px 12px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s;
+  transition: background-color color 0.3s;
 }
 
 .user-search-container button:hover {
   background-color: #f0f0b0; /* Slightly darker shade for hover effect */
+  color: #c9983a;
 }
