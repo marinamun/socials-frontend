@@ -3,7 +3,7 @@ import io from "socket.io-client";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../style/Chat.css";
 
-const socket = io("http://localhost:5000", {
+const socket = io(import.meta.env.VITE_API_URL, {
   transports: ["websocket", "polling"],
   withCredentials: true,
 });
@@ -31,7 +31,7 @@ const Chat = () => {
     const fetchRecipientInfo = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/users/${recipientId}`,
+          `${import.meta.env.VITE_API_URL}/api/users/${recipientId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -61,7 +61,7 @@ const Chat = () => {
     const fetchMessages = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/messages/${currentUserId}/${recipientId}`,
+          `${import.meta.env.VITE_API_URL}/api/messages/${currentUserId}/${recipientId}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

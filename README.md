@@ -1,8 +1,10 @@
 # BEE SOCIAL - Social Media App
 
-<a href="/">
+<a href="https://bee-social.netlify.app/">
   <img src="./public/media/BEESOCIAL.png" alt="BeeSocial" width="150">
 </a>
+
+👉🏻👉🏻Click here to try it: [BeeSocial](https://bee-social.netlify.app/)
 
 ## Project Overview
 

@@ -7,7 +7,7 @@ export const initializeSocket = () => {
     const currentUser = JSON.parse(localStorage.getItem('user'));
     const userId = currentUser?._id;
 
-    socket = io('http://localhost:5000', {
+    socket = io(import.meta.env.VITE_API_URL, {
       transports: ['websocket', 'polling'],
       withCredentials: true,
       query: { userId },

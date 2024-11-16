@@ -22,7 +22,7 @@ const SinglePostDisplay = ({ post }) => {
   const handleLike = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/posts/${post._id}/like`,
+        `${import.meta.env.VITE_API_URL}/api/posts/${post._id}/like`,
         {
           method: "PUT",
           headers: {
@@ -47,7 +47,7 @@ const SinglePostDisplay = ({ post }) => {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/posts/${post._id}`,
+        `${import.meta.env.VITE_API_URL}/api/posts/${post._id}`,
         {
           method: "DELETE",
           headers: {
@@ -68,7 +68,7 @@ const SinglePostDisplay = ({ post }) => {
   const handleAddComment = async () => {
     if (!commentText.trim()) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/comments`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/comments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const SinglePostDisplay = ({ post }) => {
       if (response.ok) {
         setCommentText("");
         const updatedComments = await fetch(
-          `http://localhost:5000/api/comments/post/${post._id}`
+          `${import.meta.env.VITE_API_URL}/api/comments/post/${post._id}`
         );
         const newComments = await updatedComments.json();
         setComments(newComments);
@@ -101,7 +101,7 @@ const SinglePostDisplay = ({ post }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/comments/${commentId}/reply`,
+        `${import.meta.env.VITE_API_URL}/api/comments/${commentId}/reply`,
         {
           method: "POST",
           headers: {
@@ -117,7 +117,7 @@ const SinglePostDisplay = ({ post }) => {
 
       if (response.ok) {
         const updatedComments = await fetch(
-          `http://localhost:5000/api/comments/post/${post._id}`
+          `${import.meta.env.VITE_API_URL}/api/comments/post/${post._id}`
         );
         const newComments = await updatedComments.json();
         setComments(newComments);
@@ -140,7 +140,7 @@ const SinglePostDisplay = ({ post }) => {
     const fetchComments = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/comments/post/${post._id}`
+          `${import.meta.env.VITE_API_URL}/api/comments/post/${post._id}`
         );
         if (response.ok) {
           const data = await response.json();

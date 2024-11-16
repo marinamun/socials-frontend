@@ -31,7 +31,7 @@ const CreatePostPopup = ({ onClose, addNewPost }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/posts", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,7 +47,7 @@ const CreatePostPopup = ({ onClose, addNewPost }) => {
 
         // Fetch the populated post data after closing the popup
         const populatedResponse = await fetch(
-          `http://localhost:5000/api/posts/${createdPost._id}`
+          `${import.meta.env.VITE_API_URL}/api/posts/${createdPost._id}`
         );
         if (populatedResponse.ok) {
           const populatedPost = await populatedResponse.json();
