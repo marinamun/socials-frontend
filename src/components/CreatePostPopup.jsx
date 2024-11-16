@@ -73,7 +73,7 @@ const CreatePostPopup = ({ onClose, addNewPost }) => {
           onChange={(e) => setContent(e.target.value)}
         ></textarea>
         <input type="file" accept="image/*" onChange={handleImageUpload} />
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: "flex", justifyContent: "center", marginTop:"20px" }}>
           <button onClick={onClose}>Close</button>
           <button onClick={handlePost}>Post</button>
         </div>

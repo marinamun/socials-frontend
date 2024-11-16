@@ -15,14 +15,20 @@
 /* Pop-up container */
 .popup-content {
   background: white;
+  color: #C9983A;
   padding: 70px;
   border-radius: 8px;
   width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .popup-content textarea {
+  color: #C9983A;
   border-radius: 15px;
   padding: 20px;
   width: 80%;
   line-height: 1.6;
+}
+.popup-content textarea::placeholder {
+  color: #C9983A; 
+  opacity: 0.7; 
 }

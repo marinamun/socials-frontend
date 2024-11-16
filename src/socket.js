@@ -36,4 +36,3 @@ export const getSocket = () => {
 };
 
 export default getSocket;
-//
