@@ -7,6 +7,7 @@
   width: 500px;
   padding: 20px;
   border-radius: 15px;
+  color: #c9983a;
 }
 
 .profile-container img {
@@ -16,6 +17,9 @@
   object-fit: cover;
   border: 4px solid #c9983a;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.profile-container button {
+  outline: none;
 }
 
 /* EDIT INFO POPUP */
@@ -87,6 +91,7 @@
   border-radius: 8px;
   border: none;
   cursor: pointer;
+  outline: none;
 }
 
 .edit-profile-btns button:last-child {

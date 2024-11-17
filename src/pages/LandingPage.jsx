@@ -13,7 +13,9 @@ const LandingPage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/posts`);
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/posts`
+        );
         if (response.ok) {
           const data = await response.json();
           setPosts(data);
@@ -44,8 +46,8 @@ const LandingPage = () => {
     }
   };
   return (
-    <div style={{ marginTop: "80px", color: "white" }}>
-      <h1>Bee Social 🐝</h1>
+    <div style={{ marginTop: "80px", color: "#333" }}>
+      <h1 style={{ color: "white" }}>Bee Social 🐝</h1>
       <UserSearchBar />
       <button onClick={handleCreatePostClick}>Create a post</button>
       {showPopup && (

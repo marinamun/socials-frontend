@@ -7,61 +7,92 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fdf8f4; /* Soft background color */
+  background-color: #fdf8f4;
   padding: 10px 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle shadow for elegance */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   z-index: 1000;
   box-sizing: border-box;
-  transition: all 0.3s ease;
+}
+
+/* Navbar Header */
+.navbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 /* Navbar Links */
-.navbar a {
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+/* Navbar Links Styling */
+.navbar-links a,
+.navbar-links button {
   text-decoration: none;
-  color: #c9983a; /* Elegant gold color */
+  color: #c9983a;
   font-size: 16px;
   font-weight: 500;
-  margin-right: 25px;
-  transition: color 0.3s ease, transform 0.2s ease;
+  margin-right: 20px;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
   white-space: nowrap;
 }
 
+/* Hide the menu toggle button by default */
+.menu-toggle {
+  display: none;
+}
+
 /* Hover Effect for Links */
-.navbar a:hover {
+.navbar-links a:hover,
+.navbar-links button:hover {
   color: #e6b537;
-  transform: translateY(-2px); /* Subtle lift effect */
 }
 
-/* Signout Button */
-.navbar button {
-  background-color: #c9983a;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 18px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-  margin-left: 20px;
-}
-
-.navbar button:hover {
-  background-color: #e6b537;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Elegant shadow on hover */
-}
-
-/* Mobile Responsive */
+/* Responsive Styles */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    padding: 15px 20px;
   }
 
-  .navbar a,
-  .navbar button {
-    margin-bottom: 12px;
+  /* Show hamburger menu on mobile only */
+  .menu-toggle {
+    display: block;
+    color: #c9983a;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Hide links by default on mobile */
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 10px;
+  }
+
+  /* Show links when menu is open */
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .navbar-links a,
+  .navbar-links button {
+    margin-bottom: 15px;
     margin-right: 0;
+    width: 100%;
+    text-align: left;
+    padding: 5px; /* Ensure consistent padding */
+    box-sizing: border-box; /* Ensure consistent sizing */
   }
 }

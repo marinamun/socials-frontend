@@ -68,18 +68,21 @@ const SinglePostDisplay = ({ post }) => {
   const handleAddComment = async () => {
     if (!commentText.trim()) return;
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/comments`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({
-          userId,
-          postId: post._id,
-          content: commentText,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/comments`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            userId,
+            postId: post._id,
+            content: commentText,
+          }),
+        }
+      );
 
       if (response.ok) {
         setCommentText("");
@@ -157,10 +160,6 @@ const SinglePostDisplay = ({ post }) => {
 
   if (!isVisible) return null;
 
-  console.log("Post data:", post);
-  console.log("post.userId:", post.userId);
-  console.log("Profile Picture URL:", post.userId?.profilePicture);
-  console.log("Username:", post.userId?.username);
   return (
     <div className="post">
       <div className="post-header">
@@ -213,7 +212,7 @@ const SinglePostDisplay = ({ post }) => {
                   {comment.replies &&
                     (expandedComments[comment._id]
                       ? comment.replies.map((reply) => (
-                          <li key={reply._id}>
+                          <li key={reply._id} style={{ color: "#333" }}>
                             <strong>{reply.userId?.username}:</strong>{" "}
                             {reply.content}
                           </li>
@@ -261,7 +260,7 @@ const SinglePostDisplay = ({ post }) => {
             ))}
           </ul>
         ) : (
-          <p>No comments yet.</p>
+          <p style={{ color: "#C9983A" }}>No comments yet.</p>
         )}
       </div>
       <div className="comment-input">
