@@ -5,6 +5,9 @@
   border-radius: 20px;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
+.login-form h2{
+  color:#c9983a;
+} 
 .login-form input {
   padding: 15px;
   color: white;

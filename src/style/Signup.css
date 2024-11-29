@@ -6,6 +6,9 @@
   max-width: 400px;
   margin: 0 auto;
 }
+.signup-form h2{
+  color:#c9983a;
+} 
 
 .signup-form input,
 .signup-form textarea {
